@@ -1,0 +1,11 @@
+Descripción de la aplicación:
+
+Primera parte:
+
+El sistema deberá de permitir capturar el número de control, el nombre del alumno, el semestre, el nombre del tutor  (se le asignará diferente tutor cada semestre), además de poder registrar por semestre el número de reuniones del tutor con el alumno debiendo registrar la fecha, la hora,  el lugar de la reunión, el motivo de la reunión y comentarios (mínimo deberán de realizarse tres reuniones por semestre y el máximo lo definirá el tutor dependiendo de cada caso, por lo que el sistema permitirá añadir tantos renglones a la tabla como sean requeridos). 
+
+Segunda parte:
+
+Se deberá de guardar el acumulado de créditos que lleva el alumno, así como el concepto por el cual lo obtuvo y la fecha y cuando complete los 5 créditos el sistema deberá de indicar que ya se puede imprimir su constancia. 
+
+También deberá de guardar las conferencias a las que hay asistido un alumno (deberá de guardar la fecha, nombre de la conferencia y número de horas que asistió) y el sistema deberá de permitir configurar con cuántas horas de conferencia se otorgará un crédito, en base a esta configuración deberá de sumar el número de horas registradas de conferencia y en cuanto se logre el total de horas se deberá de pasar a contar como crédito.
