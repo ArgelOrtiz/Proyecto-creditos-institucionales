@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -27,7 +28,9 @@ public class Pantalla extends JFrame {
     JPanel panelPrincipal;
     JPanel paneles[];
     ManejaBoton manejador;
-    
+    JFrame login;
+    JTextField usuarioIn;
+    JPasswordField contraseñaIn;
     
     //interfaces
     JButton botones[];
@@ -48,11 +51,7 @@ public class Pantalla extends JFrame {
     private UIManager.LookAndFeelInfo apariencias[];
     
     public Pantalla(){
-        apariencia();
-        //estructurar todos los componentes necesarios para la interface
-        construye();
-        arma();
-        lanza();
+        Interface();
         
         //indicar la primera pantalla a mostrar
         inicioVisible(true);
@@ -65,6 +64,14 @@ public class Pantalla extends JFrame {
         
         
         
+    }
+    
+    public void Interface(){
+        apariencia();
+        //estructurar todos los componentes necesarios para la interface
+        construye();
+        arma();
+        lanza();
     }
     
     //modifica la apariencia de la interfaace
@@ -84,15 +91,16 @@ public class Pantalla extends JFrame {
     private void construye(){
         //construir los simientos del frame
         ImageIcon icono = new ImageIcon("src/Imagenes/logo.jpg");
-        this.setSize(700,400);
+        this.setSize(700,450);
         this.setTitle("ITL Creditos institucionales");
         this.setIconImage(icono.getImage());
+        login = new JFrame();
         
         //inicializar paneles y componentes a utilizar
         panelBase = new JPanel();
         panelPrincipal = new JPanel();
         paneles = new JPanel[14];
-        botones = new JButton[14];
+        botones = new JButton[16];
         BOTONES = new String[botones.length];
         camposT = new JTextField[15];
         etiquetas = new JLabel[22];
@@ -235,7 +243,8 @@ public class Pantalla extends JFrame {
       
                 });
                 
-                botones[2].setVisible(false);
+                
+//                botones[2].setVisible(false);
     }
     
     
@@ -272,6 +281,7 @@ public class Pantalla extends JFrame {
         etiquetasD[1].setVisible(x);
         etiquetasD[2].setVisible(x);
         etiquetasD[3].setVisible(x);
+        botones[2].setVisible(x);
         
     }
     
@@ -347,6 +357,8 @@ public class Pantalla extends JFrame {
         BOTONES[11] = "Cancelar ";
         BOTONES[12] = "Aceptar  ";
         BOTONES[13] = "Cancelar ";
+        BOTONES[14] = "Aceptar  ";
+        BOTONES[15] = "Cancelar ";
         
         ETIQUETAS[0] =  "Inicio";
         ETIQUETAS[1] =  "Numero de Control          ";
@@ -380,7 +392,7 @@ public class Pantalla extends JFrame {
     
     private void lanza(){
         //Especificar las opciones del Jframe
-        this.setContentPane(panelPrincipal);
+        this.setContentPane(panelBase);
         this.setVisible(true);
         this.setResizable(false);
         //abrebiatura utilizada EXIT_ON_CLOSE = 3
@@ -389,22 +401,90 @@ public class Pantalla extends JFrame {
             
     }
     
+    public void UsuarioInterface(){
+        //default
+        JPanel panelBaseu, panelPrincipalU, panelesU [];
+        JLabel usuario, contraseña, imagen;
+        JButton aceptar, cancelar;
+    
+        ImageIcon icono = new ImageIcon("src/Imagenes/logo.jpg");
+        login.setSize(500, 200);
+        login.setTitle("ITL Creditos institucionales");
+        login.setIconImage(icono.getImage());
+        
+        panelBaseu = new JPanel();
+        panelPrincipalU = new JPanel();
+        panelesU = new JPanel[6];
+        usuario = new JLabel("Usuario");
+        contraseña = new JLabel("Contraseña:");
+        imagen = new JLabel(new ImageIcon("src/Imagenes/login.png"));
+        usuarioIn = new JTextField(10);
+        contraseñaIn = new JPasswordField(10);
+        
+        panelBaseu.setLayout(new GridLayout(1,2));
+        panelBaseu.setBounds(0, 0, 500, 200);
+        panelBaseu.setBackground(Color.WHITE);
+        
+        panelPrincipalU.setLayout(new GridLayout(3,2));
+        panelPrincipalU.setBounds(0, 0, 500, 200);
+       
+        
+        usuario.setFont(new Font("Book Antiqua",Font.ITALIC,20));
+        contraseña.setFont(new Font("Book Antiqua",Font.ITALIC,20));
+        
+        for (int i = 0; i < panelesU.length; i++) {
+           
+        panelesU[i] = new JPanel();
+        panelesU[i].setLayout(new FlowLayout());
+        panelPrincipalU.add(panelesU[i]);
+        panelesU[i].setBackground(Color.WHITE);
+       
+        panelBaseu.add(imagen);
+        panelBaseu.add(panelPrincipalU);
+         
+        }
+
+        //campo (2,2) del layout                //campo (2,3) del layout    
+        panelesU[0].add(usuario);         panelesU[1].add(usuarioIn);
+        
+        //campo (3,2) del layout                //campo (3,3) del layout  
+        panelesU[2].add(contraseña);      panelesU[3].add(contraseñaIn);
+        
+        //campo (4,2) del layout                //campo (4,3) del layout
+        panelesU[4].add(botones[14]);         panelesU[5].add(botones[15]);
+        
+        
+        
+         //Especificar las opciones del Jframe
+        login.setContentPane(panelBaseu);
+        login.setVisible(true);
+        login.setResizable(false);
+        //abrebiatura utilizada EXIT_ON_CLOSE = 3
+        login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        login.setLocationRelativeTo(null);   
+        
+        
+          }
+        
     private class ManejaBoton implements ActionListener{
         
+        private int seleccionLogin;
         
         public ManejaBoton(){
                 
+        seleccionLogin = 0;   
+            
             }
         
         
         @Override
         public void actionPerformed(ActionEvent ae){
             
+            
             if (ae.getSource().equals(botones[0])) {
-                //Agregar Alumno
                 
-                inicioVisible(false);
-                alumnoVisible(true);
+                seleccionLogin = 1;
+                UsuarioInterface();
                 
                 
             }else if(ae.getSource().equals(botones[1])){
@@ -412,6 +492,33 @@ public class Pantalla extends JFrame {
                 inicioVisible(false);
                 consultarAlumnoVisible(true);
                 
+                
+            }else if(ae.getSource().equals(botones[2])){
+                seleccionLogin = 2;
+                UsuarioInterface();
+            
+            }else if(ae.getSource().equals(botones[4])){
+                
+                //boton imtentar registrar un alumno
+                String numeroS = camposT[0].getText();
+                int numeroI = 0;
+                try{
+                    
+                numeroI = Integer.parseInt(numeroS);
+                    
+                    //verificar la cantidad de diguitos equivalentes para un numero de control
+                    if (numeroS.length()== 8) {
+                        
+                        System.out.println("yas");
+                        
+                    }else{
+                        pm.consultaErr();
+                        
+                    }
+                }catch(Exception e){
+                        
+                }
+               
                 
             }else if (ae.getSource().equals(botones[5])) {
                 //boton cancelar en la accion "regustrar alumno"
@@ -437,8 +544,6 @@ public class Pantalla extends JFrame {
                         //verificar la existencia del numero 
                         if (p.verificarNoControl(numeroI)) {
                             
-                            botones[2].setVisible(false);
-                            botones[2].setVisible(true);
                             alumnoConsultarVisible(true);
                             
                         }else{
@@ -449,11 +554,13 @@ public class Pantalla extends JFrame {
                     }else{
                         //notificar el error al ingresar un numero en formato incorrecto
                         alumnoConsultarVisible(false);
-                        botones[2].setVisible(false);
+
                         pm.consultaErr();
                     }
                      
                 }catch(NumberFormatException e){
+                   alumnoConsultarVisible(false);
+                   
                    pm.consultaErr();
                    
                 }
@@ -466,6 +573,41 @@ public class Pantalla extends JFrame {
                 botones[2].setVisible(false);
                 alumnoConsultarVisible(false);
                   
+            }else if (ae.getSource().equals(botones[14])) {
+               
+                if (p.verificarUsuario(usuarioIn.getText())) {
+                    System.out.println("sirve usuario");
+                    
+                    if (p.verificarContraseña(contraseñaIn.getText())){
+                        System.out.println("silver contraseña");
+                        
+                        if (seleccionLogin == 1) {
+
+                        //Agregar Alumno
+                        inicioVisible(false);
+                        alumnoVisible(true);
+                        login.dispose();
+                        
+                        }else if (seleccionLogin == 2) {
+                            
+                            pm.contraseñaIncorrecta();
+                            
+                        }
+                        
+                    }else{
+                        
+                        
+                    }
+                
+                }else{
+                    pm.usuarioIncorrecto();
+                    
+                }
+                
+            }else if(ae.getSource().equals(botones[15])){
+            
+            login.dispose();
+            
             }else if (ae.getSource().equals(botones[3])) {
                 
                 System.exit(0);

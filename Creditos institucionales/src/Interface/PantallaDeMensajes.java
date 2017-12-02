@@ -26,5 +26,21 @@ public class PantallaDeMensajes {
        
    }
    
+   public void usuarioIncorrecto(){
+       JOptionPane.showMessageDialog(null,
+               "Usuario incorecto", 
+               "Error",
+               JOptionPane.ERROR_MESSAGE);
+       
+   }
+   
+   public void contraseñaIncorrecta(){
+       JOptionPane.showMessageDialog(null,
+               "Contraseña incorrecta", 
+               "Error",
+               JOptionPane.ERROR_MESSAGE);
+       
+   }
+   
     
 }

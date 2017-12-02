@@ -1,4 +1,4 @@
-package Entities;
+package Entidades;
 public class Alumno {
     int semestre,numDControl;
     String nombreAlumno,nombreTutor;
