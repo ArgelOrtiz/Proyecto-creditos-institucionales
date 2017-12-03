@@ -44,7 +44,7 @@ public class Pantalla extends JFrame {
     String ETIQUETASD[];
     
     //clases necesarias
-    PantallaDeMensajes pm;
+    PantallaMensajes pm;
     Procesamiento p;
     
     //apariencia
@@ -55,12 +55,13 @@ public class Pantalla extends JFrame {
         
         //indicar la primera pantalla a mostrar
         inicioVisible(true);
-        alumnoConsultarVisible(false);
-        alumnoVisible(false);
-        reunionesVisible(false);
-        creditoVisible(false);
-        conferenciasVisible(false);
         consultarAlumnoVisible(false);
+        alumnoVisible(false);
+        reunionesVisibleI(false);
+        reunionesVisibleII(false);
+        creditoVisible(false);
+        conferenciaVisible(false);
+        consultarVisible(false);
         
         
         
@@ -105,12 +106,12 @@ public class Pantalla extends JFrame {
         camposT = new JTextField[15];
         etiquetas = new JLabel[22];
         ETIQUETAS = new String[etiquetas.length];
-        etiquetasD = new JLabel[4];
+        etiquetasD = new JLabel[3];
         ETIQUETASD = new String[etiquetasD.length];
 
         //Otros
         manejador = new ManejaBoton();
-        pm = new PantallaDeMensajes();
+        pm = new PantallaMensajes();
         p = new Procesamiento();
         
        
@@ -185,42 +186,49 @@ public class Pantalla extends JFrame {
          
                 //campo (2,1) del layout                //campo (2,2) del layout
                 paneles[2].add(botones[0]);             paneles[3].add(camposT[0]);
-                paneles[2].add(etiquetas[1]);           paneles[3].add(camposT[4]);
-                paneles[2].add(etiquetas[5]);           paneles[3].add(camposT[9]);
-                paneles[2].add(etiquetas[10]);          paneles[3].add(camposT[12]);
+                paneles[2].add(etiquetas[1]);           
+           
                 
                 //campo (3,1) del layout                //campo (3,2) del layout
-                paneles[4].add(botones[1]);             paneles[5].add(camposT[1]);
-                paneles[4].add(etiquetas[2]);           paneles[5].add(camposT[5]);
-                paneles[4].add(etiquetas[6]);           paneles[5].add(camposT[10]);
-                paneles[4].add(etiquetas[11]);          paneles[5].add(camposT[13]);
-                paneles[4].add(etiquetas[14]);          paneles[5].add(etiquetasD[0]);
+                paneles[4].add(botones[1]);             paneles[5].add(camposT[9]);
+                paneles[4].add(etiquetas[2]);           paneles[5].add(camposT[1]);
+                paneles[4].add(etiquetas[10]);          paneles[5].add(camposT[12]);
+                paneles[4].add(etiquetas[13]);          paneles[5].add(etiquetasD[0]);
+                paneles[4].add(etiquetas[4]);           paneles[5].add(camposT[3]);
+                paneles[4].add(etiquetas[8]);           paneles[5].add(camposT[7]);
                 
                 //campo (4,1) del layout                //campo (4,2) del layout
-                                                        paneles[7].add(camposT[2]);
-                paneles[6].add(etiquetas[3]);           paneles[7].add(camposT[6]);
-                paneles[6].add(etiquetas[7]);           paneles[7].add(camposT[11]);
-                paneles[6].add(etiquetas[12]);          paneles[7].add(camposT[14]);
-                paneles[6].add(etiquetas[15]);          paneles[7].add(etiquetasD[1]);
-                paneles[6].add(etiquetas[13]);
+                paneles[6].add(etiquetas[3]);           paneles[7].add(camposT[2]);
+                paneles[6].add(etiquetas[7]);           paneles[7].add(camposT[8]);
+                paneles[6].add(etiquetas[11]);          paneles[7].add(camposT[10]);
+                paneles[6].add(etiquetas[14]);          paneles[7].add(camposT[13]);
+                paneles[6].add(etiquetas[5]);           paneles[7].add(camposT[4]);
+                paneles[6].add(etiquetas[9]);
+                
+                                                        paneles[7].add(etiquetasD[1]);
+                
+                
                 
                 //campo (5,1) del layout                //campo (5,2) del layout
-                paneles[8].add(etiquetas[4]);           paneles[9].add(camposT[3]);
-                paneles[8].add(etiquetas[8]);           paneles[9].add(camposT[7]);
+                paneles[8].add(etiquetas[6]);           
+                paneles[8].add(etiquetas[12]);          paneles[9].add(camposT[11]);
+                paneles[8].add(etiquetas[15]);          paneles[9].add(camposT[14]);
+                paneles[8].add(etiquetas[21]);          paneles[9].add(camposT[5]);
+                                                        
+                                                        
                                                         paneles[9].add(etiquetasD[2]);
                                                         
                 //campo (6,1) del layout                //campo (6,2) del layout
-                paneles[10].add(etiquetas[9]);          paneles[11].add(camposT[8]);
-                paneles[10].add(botones[3]);            paneles[11].add(etiquetasD[3]);
-                paneles[10].add(etiquetas[21]);
-                                                       
+                paneles[10].add(botones[3]);            paneles[11].add(camposT[6]);
+                paneles[10].add(etiquetas[7]);          
+                                                                                   
                 //campo (7,1) del layout                //campo (7,2) del layout
                 paneles[12].add(botones[4]);            
                 paneles[12].add(botones[6]);            paneles[13].add(botones[5]);
                 paneles[12].add(botones[8]);            paneles[13].add(botones[7]);
                 paneles[12].add(botones[10]);           paneles[13].add(botones[9]);
                 paneles[12].add(botones[12]);           paneles[13].add(botones[11]);
-                paneles[12].add(botones[2]);           paneles[13].add(botones[13]);
+                paneles[12].add(botones[2]);            paneles[13].add(botones[13]);
                           
                 camposT[0].addKeyListener(new KeyListener ()  {
 
@@ -244,7 +252,6 @@ public class Pantalla extends JFrame {
                 });
                 
                 
-//                botones[2].setVisible(false);
     }
     
     
@@ -265,43 +272,49 @@ public class Pantalla extends JFrame {
         camposT[1].setVisible(x);
         etiquetas[3].setVisible(x);
         camposT[2].setVisible(x);
-        etiquetas[4].setVisible(x);
-        camposT[3].setVisible(x);
         botones[4].setVisible(x);
         botones[5].setVisible(x);
         etiquetas[16].setVisible(x);
     }
     
-    private void alumnoConsultarVisible(boolean x){
+    private void consultarAlumnoVisible(boolean x){
         etiquetas[2].setVisible(x);
         etiquetas[3].setVisible(x);
-        etiquetas[4].setVisible(x);
         etiquetas[21].setVisible(x);
         etiquetasD[0].setVisible(x);
         etiquetasD[1].setVisible(x);
         etiquetasD[2].setVisible(x);
-        etiquetasD[3].setVisible(x);
         botones[2].setVisible(x);
         
     }
     
     
-    private void reunionesVisible(boolean x){
+    private void reunionesVisibleI(boolean x){
         etiquetas[17].setFont(new Font("Book Antiqua",Font.BOLD,25));
+        etiquetas[4].setVisible(x);
         etiquetas[5].setVisible(x);
         etiquetas[6].setVisible(x);
         etiquetas[7].setVisible(x);
-        etiquetas[8].setVisible(x);
-        etiquetas[9].setVisible(x);
+
+        camposT[3].setVisible(x);
         camposT[4].setVisible(x);
         camposT[5].setVisible(x);
         camposT[6].setVisible(x);
-        camposT[7].setVisible(x);
-        camposT[8].setVisible(x);
+        
         etiquetas[17].setVisible(x);
         botones[6].setVisible(x);
         botones[7].setVisible(x);
         
+    }
+    
+    private void reunionesVisibleII(boolean x){
+        etiquetas[8].setVisible(x);
+        etiquetas[9].setVisible(x);
+        camposT[7].setVisible(x);
+        camposT[8].setVisible(x);
+        botones[6].setVisible(x);
+        botones[7].setVisible(x);
+        etiquetas[17].setVisible(x);
     }
     
     private void creditoVisible(boolean x){
@@ -318,7 +331,7 @@ public class Pantalla extends JFrame {
         
     }
     
-    private void conferenciasVisible(boolean x){
+    private void conferenciaVisible(boolean x){
         etiquetas[19].setFont(new Font("Book Antiqua",Font.BOLD,25));
         etiquetas[13].setVisible(x);
         etiquetas[14].setVisible(x);
@@ -331,7 +344,7 @@ public class Pantalla extends JFrame {
         etiquetas[19].setVisible(x);
     }
     
-    private void consultarAlumnoVisible(boolean x){
+    private void consultarVisible(boolean x){
         etiquetas[20].setFont(new Font("Book Antiqua",Font.BOLD,25));
         etiquetas[1].setVisible(x);
         botones[12].setVisible(x);
@@ -340,6 +353,7 @@ public class Pantalla extends JFrame {
         etiquetas[20].setVisible(x);
         
     }
+    
     
     private void armarNombres(){
      
@@ -386,7 +400,7 @@ public class Pantalla extends JFrame {
         ETIQUETASD[0] = "Prueba";
         ETIQUETASD[1] = "Prueba";
         ETIQUETASD[2] = "Prueba";
-        ETIQUETASD[3] = "Prueba";
+        
         
     }
     
@@ -459,13 +473,12 @@ public class Pantalla extends JFrame {
         login.setContentPane(panelBaseu);
         login.setVisible(true);
         login.setResizable(false);
-        //abrebiatura utilizada EXIT_ON_CLOSE = 3
         login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         login.setLocationRelativeTo(null);   
         
         
           }
-        
+      
     private class ManejaBoton implements ActionListener{
         
         private int seleccionLogin;
@@ -490,10 +503,11 @@ public class Pantalla extends JFrame {
             }else if(ae.getSource().equals(botones[1])){
                 //Consultar Alumno
                 inicioVisible(false);
-                consultarAlumnoVisible(true);
+                consultarVisible(true);
                 
                 
             }else if(ae.getSource().equals(botones[2])){
+                //boton agregar detalles a alumno
                 seleccionLogin = 2;
                 UsuarioInterface();
             
@@ -509,28 +523,121 @@ public class Pantalla extends JFrame {
                     //verificar la cantidad de diguitos equivalentes para un numero de control
                     if (numeroS.length()== 8) {
                         
-                        System.out.println("yas");
+                        if (!"".equals(camposT[1].getText())) {
+                            if (!"".equals(camposT[2].getText())) {
+                                    
+                                    p.registrarAlumno(numeroI, camposT[1].getText(), camposT[2].getText(), camposT[3].getText());
+                                    alumnoVisible(false);
+                                    inicioVisible(true);
+                                    camposT[0].setText("");
+                                    
+                                    
+                            
+                            }else{
+                            pm.vacio("Semestre");
+                        }
+                            
+                        }else{
+                            pm.vacio("Nombre Alumno");
+                        }
                         
                     }else{
                         pm.consultaErr();
                         
                     }
                 }catch(Exception e){
-                        
+                     
+                    pm.consultaErr();
                 }
                
                 
             }else if (ae.getSource().equals(botones[5])) {
-                //boton cancelar en la accion "regustrar alumno"
+                //boton cancelar en la accion "registrar alumno"
                 alumnoVisible(false);
                 inicioVisible(true);
                 camposT[0].setText("");
                 
+            }else if(ae.getSource().equals(botones[6])){
+                
+                reunionesVisibleI(false);
+                reunionesVisibleII(true);
+            
             }else if (ae.getSource().equals(botones[7])) {
-                //boton cancelar en la accion "regustrar Reunion"
-                reunionesVisible(false);
+                //boton cancelar en la accion "registrar Reunion"
+                etiquetas[1].setVisible(false);
+                camposT[0].setVisible(false);
+                camposT[0].setEnabled(true);
+                reunionesVisibleI(false);
+                reunionesVisibleII(false);
                 inicioVisible(true);
                   
+            }else if(ae.getSource().equals(botones[8])){
+                //Boton aceptar en agregar credito
+                if (!"".equals(camposT[9].getText())) {
+                            if (!"".equals(camposT[10].getText())) {
+                                if (!"".equals(camposT[11].getText())) {
+                                    
+                                    
+                                    
+                                }else{
+                            pm.vacio("Concepto");
+                        }
+                            }else{
+                            pm.vacio("Fecha");
+                        }
+                            
+                        }else{
+                            pm.vacio("Numero");
+                        }
+            
+            
+            }else if(ae.getSource().equals(botones[9])){
+                //boton cancelar agregar credito
+                if (pm.advertenciaSalir() == 0) {
+                    
+                    creditoVisible(false);
+                    etiquetas[1].setVisible(false);
+                    camposT[0].setVisible(false);
+                    camposT[0].setEnabled(true);
+                    inicioVisible(true);
+                    camposT[0].setText("");
+                    botones[2].setVisible(false);
+                    consultarAlumnoVisible(false);
+                    }
+            
+            }else if(ae.getSource().equals(botones[10])){
+            
+                    if (!"".equals(camposT[12].getText())) {
+                            if (!"".equals(camposT[13].getText())) {
+                                if (!"".equals(camposT[14].getText())) {
+                                    
+                                    
+                                    
+                                }else{
+                            pm.vacio("Horas");
+                        }
+                            }else{
+                            pm.vacio("Fecha");
+                        }
+                            
+                        }else{
+                            pm.vacio("Nombre");
+                        }
+            
+            }else if(ae.getSource().equals(botones[11])){
+            
+                if (pm.advertenciaSalir() == 0) {
+                    
+                    conferenciaVisible(false);
+                    etiquetas[1].setVisible(false);
+                    camposT[0].setVisible(false);
+                    camposT[0].setEnabled(true);
+                    inicioVisible(true);
+                    camposT[0].setText("");
+                    botones[2].setVisible(false);
+                    consultarAlumnoVisible(false);
+                    }
+            
             }else if (ae.getSource().equals(botones[12])) {
                 //boton para intentar aconsultar un alumno
                 String numeroS = camposT[0].getText();
@@ -544,7 +651,7 @@ public class Pantalla extends JFrame {
                         //verificar la existencia del numero 
                         if (p.verificarNoControl(numeroI)) {
                             
-                            alumnoConsultarVisible(true);
+                            consultarAlumnoVisible(true);
                             
                         }else{
                             //notificar la inexistencia de ese numero 
@@ -553,13 +660,13 @@ public class Pantalla extends JFrame {
                     
                     }else{
                         //notificar el error al ingresar un numero en formato incorrecto
-                        alumnoConsultarVisible(false);
+                        consultarAlumnoVisible(false);
 
                         pm.consultaErr();
                     }
                      
                 }catch(NumberFormatException e){
-                   alumnoConsultarVisible(false);
+                   consultarAlumnoVisible(false);
                    
                    pm.consultaErr();
                    
@@ -567,19 +674,19 @@ public class Pantalla extends JFrame {
 
             } else if (ae.getSource().equals(botones[13])) {
                 //boton cancelar en la accion "consulatar alumno"
-                consultarAlumnoVisible(false);
-                inicioVisible(true);
-                camposT[0].setText("");
-                botones[2].setVisible(false);
-                alumnoConsultarVisible(false);
-                  
+                
+                    consultarVisible(false);
+                    inicioVisible(true);
+                    camposT[0].setText("");
+                    botones[2].setVisible(false);
+                    consultarAlumnoVisible(false);
+                                  
             }else if (ae.getSource().equals(botones[14])) {
+                
                
                 if (p.verificarUsuario(usuarioIn.getText())) {
-                    System.out.println("sirve usuario");
                     
                     if (p.verificarContraseña(contraseñaIn.getText())){
-                        System.out.println("silver contraseña");
                         
                         if (seleccionLogin == 1) {
 
@@ -590,12 +697,49 @@ public class Pantalla extends JFrame {
                         
                         }else if (seleccionLogin == 2) {
                             
-                            pm.contraseñaIncorrecta();
+                            consultarVisible(false);
+                            consultarAlumnoVisible(false);
+                            login.dispose();
+                            String s = pm.opcionAgregar();
+                           
+                            
+                            if (s != null) {
+                                
+                                if (s.equals(pm.opcionesAgregar[0])) {
+                                    
+                                    //Agregar credito
+                                    etiquetas[1].setVisible(true);
+                                    camposT[0].setVisible(true);
+                                    camposT[0].setEnabled(false);
+                                    creditoVisible(true);
+                                    
+                                    
+                                }else if (s.equals(pm.opcionesAgregar[1])) {
+                                    
+                                    //Agregar Conferencia
+                                    etiquetas[1].setVisible(true);
+                                    camposT[0].setVisible(true);
+                                    camposT[0].setEnabled(false);
+                                    conferenciaVisible(true);
+                                    
+                                }else if (s.equals(pm.opcionesAgregar[2])) {
+                                    
+                                    //Agregar reunion
+                                    etiquetas[1].setVisible(true);
+                                    camposT[0].setVisible(true);
+                                    camposT[0].setEnabled(false);
+                                    reunionesVisibleI(true);
+                                    
+                                   
+                                    
+                                }else{
+                                
+                            }
                             
                         }
                         
                     }else{
-                        
+                        pm.contraseñaIncorrecta();
                         
                     }
                 
@@ -603,7 +747,8 @@ public class Pantalla extends JFrame {
                     pm.usuarioIncorrecto();
                     
                 }
-                
+                    
+                } 
             }else if(ae.getSource().equals(botones[15])){
             
             login.dispose();
@@ -611,11 +756,12 @@ public class Pantalla extends JFrame {
             }else if (ae.getSource().equals(botones[3])) {
                 
                 System.exit(0);
+               
             }
             
         }
 
         
     }
-   
+    
 }
