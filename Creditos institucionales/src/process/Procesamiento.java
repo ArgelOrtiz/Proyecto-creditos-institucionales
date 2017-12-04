@@ -20,6 +20,37 @@ public class Procesamiento {
         CONTRASEÑA = "7624000";
     }
     
+    public String consultaNombre(){
+        
+        return "Nombre";
+    }
+    public String consultaSemestre(){
+        
+        return "Cuarto";
+    }
+    public String consultaCreditos(){
+        
+        return "5";
+    }
+    public String consultarNoCredito(){
+        
+        return "875";
+    }
+    
+    public boolean registrarCredito(){
+        
+        return true;
+    }
+    
+    public boolean registrarConferencia(){
+        
+        return true;
+    }
+    
+    public boolean registrarReunion(){
+        
+        return true;
+    }
     public boolean verificarNoControl(int Numero){
         
         return true;

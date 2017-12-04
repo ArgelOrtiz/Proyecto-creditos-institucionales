@@ -558,9 +558,72 @@ public class Pantalla extends JFrame {
                 camposT[0].setText("");
                 
             }else if(ae.getSource().equals(botones[6])){
+                //boton agregar reunion
                 
-                reunionesVisibleI(false);
-                reunionesVisibleII(true);
+                if (!"".equals(camposT[3].getText())) {
+                        if (!"".equals(camposT[4].getText())) {
+                            if (!"".equals(camposT[5].getText())) {
+                                if (!"".equals(camposT[6].getText())) {
+                                    //primera parte de reunion
+                                    reunionesVisibleI(false);
+                                    reunionesVisibleII(true);
+                                    
+                                    if (!"".equals(camposT[7].getText())) {
+                                        if (!"".equals(camposT[8].getText())) {
+                                            
+                                                if (p.registrarReunion()) {
+                                                pm.confirmacion("La Reunion");
+                                                etiquetas[1].setVisible(false);
+                                                camposT[0].setVisible(false);
+                                                camposT[0].setEnabled(true);
+                                                reunionesVisibleI(false);
+                                                reunionesVisibleII(false);
+                                                inicioVisible(true);
+                                            }
+                                            
+                                            
+                                        }else{
+                                            
+                                            camposT[8].setText("Sin Comentarios");
+                                            if (p.registrarReunion()) {
+                                                pm.confirmacion("La Reunion");
+                                                etiquetas[1].setVisible(false);
+                                                camposT[0].setVisible(false);
+                                                camposT[0].setEnabled(true);
+                                                reunionesVisibleI(false);
+                                                reunionesVisibleII(false);
+                                                inicioVisible(true);
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        
+                                        pm.vacio("Hora");
+                                        
+                                    }
+                                    
+                                }else{
+                                    
+                                    pm.vacio("Motivo");
+                                    
+                                }
+                                
+                            }else{
+                                
+                                pm.vacio("Lugar");
+                                
+                            }
+                            
+                    }else{
+                          
+                            pm.vacio("Fecha");
+                            
+                        }
+                
+                }else{
+                    pm.vacio("Nombre Tutor");
+                    
+                }
             
             }else if (ae.getSource().equals(botones[7])) {
                 //boton cancelar en la accion "registrar Reunion"
@@ -577,6 +640,19 @@ public class Pantalla extends JFrame {
                             if (!"".equals(camposT[10].getText())) {
                                 if (!"".equals(camposT[11].getText())) {
                                     
+                                    if(p.registrarCredito()){
+                                    
+                                    pm.confirmacion("El Credito");
+                                    creditoVisible(false);
+                                    etiquetas[1].setVisible(false);
+                                    camposT[0].setVisible(false);
+                                    camposT[0].setEnabled(true);
+                                    inicioVisible(true);
+                                    camposT[0].setText("");
+                                    botones[2].setVisible(false);
+                                    consultarAlumnoVisible(false);
+                                    camposT[9].setEnabled(true);
+                                    }
                                     
                                     
                                 }else{
@@ -603,6 +679,7 @@ public class Pantalla extends JFrame {
                     camposT[0].setText("");
                     botones[2].setVisible(false);
                     consultarAlumnoVisible(false);
+                    camposT[9].setEnabled(true);
                     }
             
             }else if(ae.getSource().equals(botones[10])){
@@ -610,8 +687,20 @@ public class Pantalla extends JFrame {
                     if (!"".equals(camposT[12].getText())) {
                             if (!"".equals(camposT[13].getText())) {
                                 if (!"".equals(camposT[14].getText())) {
-                                    
-                                    
+                                    //registrar conferencia
+                                        if (p.registrarConferencia()) {
+                                            
+                                            pm.confirmacion("La Conferencia");
+                                            conferenciaVisible(false);
+                                            etiquetas[1].setVisible(false);
+                                            camposT[0].setVisible(false);
+                                            camposT[0].setEnabled(true);
+                                            inicioVisible(true);
+                                            camposT[0].setText("");
+                                            botones[2].setVisible(false);
+                                            consultarAlumnoVisible(false);
+                                            camposT[9].setEnabled(true);
+                                    }
                                     
                                 }else{
                             pm.vacio("Horas");
@@ -650,6 +739,10 @@ public class Pantalla extends JFrame {
                     if (numeroS.length()== 8) {
                         //verificar la existencia del numero 
                         if (p.verificarNoControl(numeroI)) {
+                            
+                            etiquetasD[0].setText(p.consultaNombre());
+                            etiquetasD[1].setText(p.consultaSemestre());
+                            etiquetasD[2].setText(p.consultaCreditos());
                             
                             consultarAlumnoVisible(true);
                             
@@ -708,6 +801,8 @@ public class Pantalla extends JFrame {
                                 if (s.equals(pm.opcionesAgregar[0])) {
                                     
                                     //Agregar credito
+                                    camposT[9].setText(p.consultarNoCredito());
+                                    camposT[9].setEnabled(false);
                                     etiquetas[1].setVisible(true);
                                     camposT[0].setVisible(true);
                                     camposT[0].setEnabled(false);
@@ -732,23 +827,30 @@ public class Pantalla extends JFrame {
                                     
                                    
                                     
+                                }
+                            
                                 }else{
+                                //Boton cancelar en opciones de agregar
+                                consultarVisible(false);
+                                inicioVisible(true);
+                                camposT[0].setText("");
+                                botones[2].setVisible(false);
+                                consultarAlumnoVisible(false);
                                 
                             }
-                            
                         }
-                        
                     }else{
                         pm.contraseñaIncorrecta();
                         
                     }
                 
                 }else{
+                        
                     pm.usuarioIncorrecto();
                     
-                }
-                    
-                } 
+                
+                }     
+                
             }else if(ae.getSource().equals(botones[15])){
             
             login.dispose();
