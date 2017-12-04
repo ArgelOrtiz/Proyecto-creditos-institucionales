@@ -1,7 +1,12 @@
 
 package process;
 
+
+import DataBase.Conexion;
+import static DataBase.Conexion.conectarBD;
+import static DataBase.Conexion.conexion;
 import Interface.PantallaMensajes;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -12,6 +17,7 @@ public class Procesamiento {
     private final String USUARIO;
     private final String CONTRASEÑA;
     private final PantallaMensajes pm;
+    
     
     public Procesamiento(){
         
@@ -68,9 +74,30 @@ public class Procesamiento {
         return contraseña.equals(CONTRASEÑA);
     }
     
-    public void registrarAlumno(int control, String nombre, String semestre, String tutor ){
+    public void registrarAlumno(int control, String nombre, int semestre ){
         
-        pm.confirmacion("El Alumno");
+                conectarBD();
+            try{
+                if (!conexion.isClosed()) {
+                    System.out.println("1");
+                    PreparedStatement ps = Conexion.conexion.prepareStatement("insert into Alumno values(?,?,?)");
+                    
+                    ps.setInt(1, control);
+                    ps.setInt(2, semestre);
+                    ps.setString(3, nombre);
+                    
+                    ps.executeUpdate();
+                    ps.close();
+                    pm.confirmacion("El Alumno");
+                }
+                
+            }catch(Exception e){
+                
+                System.err.println(e);
+                
+            }           
+        
+        
         
     }
     

@@ -525,8 +525,9 @@ public class Pantalla extends JFrame {
                         
                         if (!"".equals(camposT[1].getText())) {
                             if (!"".equals(camposT[2].getText())) {
+                                System.out.println(numeroI+ camposT[1].getText()+ Integer.parseInt(camposT[2].getText()));
                                     
-                                    p.registrarAlumno(numeroI, camposT[1].getText(), camposT[2].getText(), camposT[3].getText());
+                                    p.registrarAlumno(numeroI, camposT[1].getText(), Integer.parseInt(camposT[2].getText()));
                                     alumnoVisible(false);
                                     inicioVisible(true);
                                     camposT[0].setText("");
@@ -784,6 +785,7 @@ public class Pantalla extends JFrame {
                         if (seleccionLogin == 1) {
 
                         //Agregar Alumno
+                        
                         inicioVisible(false);
                         alumnoVisible(true);
                         login.dispose();
