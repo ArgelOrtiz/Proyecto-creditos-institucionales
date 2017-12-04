@@ -1,5 +1,6 @@
 package Interface;
 
+import Entidades.Alumno;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -31,6 +32,7 @@ public class Pantalla extends JFrame {
     JFrame login;
     JTextField usuarioIn;
     JPasswordField contraseñaIn;
+    Alumno a;
     
     //interfaces
     JButton botones[];
@@ -113,7 +115,7 @@ public class Pantalla extends JFrame {
         manejador = new ManejaBoton();
         pm = new PantallaMensajes();
         p = new Procesamiento();
-        
+//        a = new Alumno();
        
     }
     
@@ -516,7 +518,7 @@ public class Pantalla extends JFrame {
                 //boton imtentar registrar un alumno
                 String numeroS = camposT[0].getText();
                 int numeroI = 0;
-                try{
+//                try{
                     
                 numeroI = Integer.parseInt(numeroS);
                     
@@ -525,13 +527,14 @@ public class Pantalla extends JFrame {
                         
                         if (!"".equals(camposT[1].getText())) {
                             if (!"".equals(camposT[2].getText())) {
-                                System.out.println(numeroI+ camposT[1].getText()+ Integer.parseInt(camposT[2].getText()));
                                     
                                     p.registrarAlumno(numeroI, camposT[1].getText(), Integer.parseInt(camposT[2].getText()));
+                                    
                                     alumnoVisible(false);
                                     inicioVisible(true);
                                     camposT[0].setText("");
-                                    
+                                    camposT[1].setText("");
+                                    camposT[2].setText("");
                                     
                             
                             }else{
@@ -543,13 +546,14 @@ public class Pantalla extends JFrame {
                         }
                         
                     }else{
+                        
                         pm.consultaErr();
                         
                     }
-                }catch(Exception e){
-                     
-                    pm.consultaErr();
-                }
+//                }catch(Exception e){
+//                     
+//                    pm.consultaErr();
+//                }
                
                 
             }else if (ae.getSource().equals(botones[5])) {
@@ -739,11 +743,11 @@ public class Pantalla extends JFrame {
                     //verificar la cantidad de diguitos equivalentes para un numero de control
                     if (numeroS.length()== 8) {
                         //verificar la existencia del numero 
-                        if (p.verificarNoControl(numeroI)) {
-                            
-                            etiquetasD[0].setText(p.consultaNombre());
-                            etiquetasD[1].setText(p.consultaSemestre());
-                            etiquetasD[2].setText(p.consultaCreditos());
+                        if (true) {
+                                a = p.ConsultarAlumno(numeroI);
+                            etiquetasD[0].setText(a.getNombre());
+                            etiquetasD[1].setText(a.getSemestre()+"");
+                            etiquetasD[2].setText(a.getCreditos()+"");
                             
                             consultarAlumnoVisible(true);
                             
