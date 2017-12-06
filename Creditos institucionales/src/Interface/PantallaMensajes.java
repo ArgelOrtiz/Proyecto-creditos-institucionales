@@ -90,6 +90,14 @@ public class PantallaMensajes {
        
    }
    
+   public void usuarioInexistente(){
+       
+       JOptionPane.showMessageDialog(null, 
+                                    "El Usuario no Existe",
+                                    "Advertencia",
+                                    JOptionPane.INFORMATION_MESSAGE);
+   }
+   
    public void crearOpciones(){
        
        opcionesAgregar [0] = "Credito";

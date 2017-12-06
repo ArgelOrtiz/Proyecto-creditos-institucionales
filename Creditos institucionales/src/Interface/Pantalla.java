@@ -253,7 +253,72 @@ public class Pantalla extends JFrame {
       
                 });
                 
+             camposT[13].addKeyListener(new KeyListener ()  {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (camposT[13].getText().length() == 10) {
+                    e.consume();
+                    }
+            }
+            
+            @Override
+            public void keyPressed(KeyEvent ke) {
                 
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                
+            }
+      
+                });
+             
+            
+             
+             
+             camposT[4].addKeyListener(new KeyListener ()  {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (camposT[4].getText().length() == 10) {
+                    e.consume();
+                    }
+            }
+            
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                
+            }
+      
+                });
+             
+             camposT[7].addKeyListener(new KeyListener ()  {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (camposT[7].getText().length() == 5) {
+                    e.consume();
+                    }
+            }
+            
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                
+            }
+      
+                });
+     
     }
     
     
@@ -518,7 +583,7 @@ public class Pantalla extends JFrame {
                 //boton imtentar registrar un alumno
                 String numeroS = camposT[0].getText();
                 int numeroI = 0;
-//                try{
+                try{
                     
                 numeroI = Integer.parseInt(numeroS);
                     
@@ -550,10 +615,10 @@ public class Pantalla extends JFrame {
                         pm.consultaErr();
                         
                     }
-//                }catch(Exception e){
-//                     
-//                    pm.consultaErr();
-//                }
+                }catch(Exception e){
+                     
+                    pm.consultaErr();
+                }
                
                 
             }else if (ae.getSource().equals(botones[5])) {
@@ -564,6 +629,7 @@ public class Pantalla extends JFrame {
                 
             }else if(ae.getSource().equals(botones[6])){
                 //boton agregar reunion
+              
                 
                 if (!"".equals(camposT[3].getText())) {
                         if (!"".equals(camposT[4].getText())) {
@@ -575,8 +641,11 @@ public class Pantalla extends JFrame {
                                     
                                     if (!"".equals(camposT[7].getText())) {
                                         if (!"".equals(camposT[8].getText())) {
+                                                 //segunda parte de la reunion
                                             
-                                                if (p.registrarReunion()) {
+                                                if (p.registrarReunion(
+                                                camposT[3].getText(),camposT[5].getText(), camposT[6].getText(),camposT[4].getText()
+                                                ,camposT[7].getText(),camposT[8].getText(),Integer.parseInt(camposT[0].getText()))) {
                                                 pm.confirmacion("La Reunion");
                                                 etiquetas[1].setVisible(false);
                                                 camposT[0].setVisible(false);
@@ -590,7 +659,9 @@ public class Pantalla extends JFrame {
                                         }else{
                                             
                                             camposT[8].setText("Sin Comentarios");
-                                            if (p.registrarReunion()) {
+                                            if (p.registrarReunion(
+                                                camposT[3].getText(),camposT[5].getText(), camposT[6].getText(),camposT[4].getText()
+                                                ,camposT[7].getText(),camposT[8].getText(),Integer.parseInt(camposT[0].getText()))) {
                                                 pm.confirmacion("La Reunion");
                                                 etiquetas[1].setVisible(false);
                                                 camposT[0].setVisible(false);
@@ -632,22 +703,36 @@ public class Pantalla extends JFrame {
             
             }else if (ae.getSource().equals(botones[7])) {
                 //boton cancelar en la accion "registrar Reunion"
+                if(pm.advertenciaSalir()==0){
                 etiquetas[1].setVisible(false);
                 camposT[0].setVisible(false);
                 camposT[0].setEnabled(true);
                 reunionesVisibleI(false);
                 reunionesVisibleII(false);
                 inicioVisible(true);
+                camposT[0].setText("");
+                camposT[3].setText("");
+                camposT[4].setText("");
+                camposT[5].setText("");
+                camposT[6].setText("");
+                camposT[7].setText("");
+                camposT[8].setText(""); 
+                
+                }
+                
                   
             }else if(ae.getSource().equals(botones[8])){
                 //Boton aceptar en agregar credito
+                String numeroS = camposT[0].getText();
+                int numeroI = Integer.parseInt(numeroS);
+                
                 if (!"".equals(camposT[9].getText())) {
                             if (!"".equals(camposT[10].getText())) {
                                 if (!"".equals(camposT[11].getText())) {
                                     
-                                    if(p.registrarCredito()){
+                                    if(p.registrarCredito(camposT[11].getText(),camposT[10].getText(),numeroI)){
                                     
-                                    pm.confirmacion("El Credito");
+                                    
                                     creditoVisible(false);
                                     etiquetas[1].setVisible(false);
                                     camposT[0].setVisible(false);
@@ -688,14 +773,17 @@ public class Pantalla extends JFrame {
                     }
             
             }else if(ae.getSource().equals(botones[10])){
-            
+                //Bonton para intentar registrar conferencia
+                String numeroS = camposT[0].getText();
+                int numeroI = Integer.parseInt(numeroS);
+                
                     if (!"".equals(camposT[12].getText())) {
                             if (!"".equals(camposT[13].getText())) {
                                 if (!"".equals(camposT[14].getText())) {
                                     //registrar conferencia
-                                        if (p.registrarConferencia()) {
+                                        if (p.registrarConferencia(camposT[12].getText(), camposT[13].getText(), Integer.parseInt(camposT[14].getText()),numeroI)) {
                                             
-                                            pm.confirmacion("La Conferencia");
+                                           
                                             conferenciaVisible(false);
                                             etiquetas[1].setVisible(false);
                                             camposT[0].setVisible(false);
@@ -743,7 +831,7 @@ public class Pantalla extends JFrame {
                     //verificar la cantidad de diguitos equivalentes para un numero de control
                     if (numeroS.length()== 8) {
                         //verificar la existencia del numero 
-                        if (true) {
+                        if (p.existenciaAlumno(numeroI)) {
                                 a = p.ConsultarAlumno(numeroI);
                             etiquetasD[0].setText(a.getNombre());
                             etiquetasD[1].setText(a.getSemestre()+"");
@@ -753,6 +841,12 @@ public class Pantalla extends JFrame {
                             
                         }else{
                             //notificar la inexistencia de ese numero 
+                            etiquetasD[0].setText("");
+                            etiquetasD[1].setText("");
+                            etiquetasD[2].setText("");
+                            consultarAlumnoVisible(false);
+                            pm.usuarioInexistente();
+                           
                         }
                     
                     
